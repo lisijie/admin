@@ -1,9 +1,9 @@
 <?php
 namespace App\Exception;
 
-use Core\Exception\Handler as BaseHandler;
+use Core\Exception\ErrorHandler;
 
-class Handler extends BaseHandler
+class Handler extends ErrorHandler
 {
 
 }

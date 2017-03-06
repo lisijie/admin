@@ -13,7 +13,6 @@ use Core\Lib\Strings;
 
 class SystemController extends BaseController
 {
-
 	/**
 	 * 账号管理
 	 */
@@ -228,7 +227,7 @@ class SystemController extends BaseController
 	private function getPowerList($chkpower = '')
 	{
 		$chkpower = empty($chkpower) ? [] : explode(',', $chkpower);
-		$menuList = \App::conf('menu');
+		$menuList = \App::config()->get('menu');
 		$powerList = [];
 		foreach ($menuList as $row) {
 			$group['name'] = $row['name'];

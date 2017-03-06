@@ -7,7 +7,7 @@
 namespace App\Controller;
 
 use App\Model\AdminModel;
-use Core\Controller as Controller;
+use Core\Controller;
 
 class BaseController extends Controller
 {
@@ -62,7 +62,7 @@ class BaseController extends Controller
 		$powers = $this->powers;
 		// 菜单
 		$pageName = '';
-		$menuList = \App::conf('menu');
+		$menuList = \App::config()->get('menu');
 		foreach ($menuList as $k => &$group) {
 			$group['active'] = '';
 			foreach ($group['submenu'] as $kk => &$submenu) {
@@ -87,7 +87,7 @@ class BaseController extends Controller
 	// 登录校验
 	private function initAuth()
 	{
-		$auth = $this->request->cookies()->getDecrypt('auth');
+		$auth = $this->request->cookies()->getSecure('auth');
 		$ip = ''; // $this->request->getClientIp()
 		if (empty($auth) || strpos($auth, '|') === false) {
 			return false;
@@ -115,7 +115,7 @@ class BaseController extends Controller
 			'expire' => $remember ? NOW + 86400*7 : 0,
 		];
 
-		$this->response->cookies()->setEncrypt('auth', $cookie);
+		$this->response->cookies()->setSecure('auth', $cookie);
 	}
 
 	// 跳转到登录页

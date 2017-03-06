@@ -82,9 +82,6 @@
 
 								</div><!-- /.widget-main -->
 
-								<div class="toolbar clearfix">
-									<div class="center">&copy; lisijie.org</div>
-								</div>
 							</div><!-- /.widget-body -->
 						</div><!-- /.login-box -->
 
