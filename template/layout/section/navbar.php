@@ -12,8 +12,8 @@
 		</button>
 
 		<div class="navbar-header pull-left">
-			<a href="<?php echo $baseUrl?>" class="navbar-brand">
-				<small><i class="fa fa-leaf"></i> 后台管理系统</small>
+			<a href="<?= $baseUrl?>" class="navbar-brand">
+				<small><i class="fa fa-home"></i> 后台管理系统</small>
 			</a>
 		</div>
 
@@ -21,24 +21,21 @@
 			<ul class="nav ace-nav">
 				<li class="light-blue">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-						<img class="nav-user-photo" src="assets/avatars/avatar<?php echo $loginUser['sex']?>.png" alt="Jason's Photo" />
-						<span class="user-info">
-							<small>Welcome,</small>
-							<?php echo $loginUser['user_name']?>
-						</span>
+						<img class="nav-user-photo" src="assets/avatars/avatar<?= $loginUser['sex']?>.png" alt="Jason's Photo" />
+                        <?= $loginUser['username']?>
 						<i class="ace-icon fa fa-caret-down"></i>
 					</a>
 
 					<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 						<li>
-							<a href="<?php echo URL('system/profile')?>">
+							<a href="<?= URL('system/profile/index')?>">
 								<i class="ace-icon fa fa-user"></i>
 								个人信息
 							</a>
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="<?php echo URL('main/logout')?>">
+							<a href="<?= URL('main/logout')?>">
 								<i class="ace-icon fa fa-power-off"></i>
 								退出登录
 							</a>

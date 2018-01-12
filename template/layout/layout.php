@@ -24,7 +24,7 @@
 					<i class="ace-icon fa fa-home home-icon"></i>
 					<a href="/">首页</a>
 				</li>
-				<li class="active"><?php echo $pageName?></li>
+				<li class="active"><?= $pageName?></li>
 			</ul><!-- /.breadcrumb -->
 
 		</div>

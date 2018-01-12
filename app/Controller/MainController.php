@@ -1,12 +1,7 @@
 <?php
-/**
- * 主界面
- *
- * @author jesse.li <jesse@comprame.com>
- */
-
 namespace App\Controller;
 
+use App;
 use App\Model\AdminModel;
 
 class MainController extends BaseController
@@ -19,7 +14,7 @@ class MainController extends BaseController
      */
     public function indexAction()
     {
-	    $this->assign('pageName', '系统概况');
+        $this->assign('pageName', '系统概况');
         return $this->display();
     }
 
@@ -33,7 +28,8 @@ class MainController extends BaseController
         if ($this->adminId > 0) {
             return $this->goHome();
         }
-        $session = \App::session();
+
+        $session = App::session();
         if ($this->request->isMethod('post')) {
             $userName = $this->getPost('username');
             $password = $this->getPost('password');

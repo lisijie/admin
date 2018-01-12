@@ -20,6 +20,7 @@
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
+        <link rel="stylesheet" href="assets/css/custom.css" />
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
@@ -48,4 +49,4 @@
 		<script src="assets/js/ace.min.js"></script>
 
 	</head>
-	<body class="no-skin">
+	<body class="no-skin skin-custom">

@@ -1,20 +1,18 @@
 <div class="row">
 	<div class="col-xs-12">
 
-		<form class="form-horizontal" method="post" action="<?php echo URL(CUR_ROUTE, ['do'=>'addadmin'])?>">
-			<div class="form-group <?php echo !empty($error_user_name) ? 'has-error' : ''?>">
-				<label for="user_name" class="col-sm-2 control-label">用户名</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="user_name" name="user_name" value="<?php echo isset($data['user_name'])?$data['user_name']:''?>">
-				</div>
-				<div class="help-block col-xs-12 col-sm-reset inline">
-					<?php echo !empty($error_user_name) ? $error_user_name : ''?>
+		<form class="form-horizontal" method="post" action="<?= URL(CUR_ROUTE, ['do'=>'editadmin'])?>">
+			<input type="hidden" name="id" value="<?= $adminInfo['id']?>" />
+			<div class="form-group">
+				<label class="col-sm-2 control-label">用户名</label>
+				<div class="col-sm-10">
+					<label class="control-label"><?= $adminInfo['username']?></label>
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="real_name" class="col-sm-2 control-label">真实姓名</label>
+				<label for="realname" class="col-sm-2 control-label">真实姓名</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="real_name" name="real_name" value="<?php echo isset($data['real_name'])?$data['real_name']:''?>">
+					<input type="text" class="form-control" id="realname" name="realname" value="<?= $adminInfo['realname']?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -22,13 +20,13 @@
 				<div class="col-sm-3">
 					<div class="radio-inline">
 						<label>
-							<input type="radio" name="sex" id="sex" value="1" <?php echo !isset($data['sex'])||$data['sex']!=2?'checked':''?>>
+							<input type="radio" name="sex" id="sex" value="1" <?= $adminInfo['sex']!=2?'checked':''?>>
 							男
 						</label>
 					</div>
 					<div class="radio-inline">
 						<label>
-							<input type="radio" name="sex" id="sex" value="2" <?php echo isset($data['sex'])&&$data['sex']==2?'checked':''?>>
+							<input type="radio" name="sex" id="sex" value="2" <?= $adminInfo['sex']==2?'checked':''?>>
 							女
 						</label>
 					</div>
@@ -37,25 +35,25 @@
 			<div class="form-group">
 				<label for="email" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="email" name="email" value="<?php echo isset($data['email'])?$data['email']:''?>">
+					<input type="text" class="form-control" id="email" name="email" value="<?= $adminInfo['email']?>">
 				</div>
 			</div>
-			<div class="form-group <?php echo !empty($error_password1) ? 'has-error' : ''?>">
+			<div class="form-group <?= !empty($error_password1) ? 'has-error' : ''?>">
 				<label for="password1" class="col-sm-2 control-label">新密码</label>
 				<div class="col-sm-3">
-					<input type="password" class="form-control" id="password1" name="password1" value="<?php echo isset($data['password'])?$data['password']:''?>" />
+					<input type="password" class="form-control" id="password1" name="password1" value="<?= $password1?>" />
 				</div>
 				<div class="help-block col-xs-12 col-sm-reset inline">
-					<?php echo !empty($error_password1) ? $error_password1 : ''?>
+					<?= !empty($error_password1) ? $error_password1 : '不修改密码请留空'?>
 				</div>
 			</div>
-			<div class="form-group <?php echo !empty($error_password2) ? 'has-error' : ''?>">
+			<div class="form-group <?= !empty($error_password2) ? 'has-error' : ''?>">
 				<label for="password2" class="col-sm-2 control-label">确认密码</label>
 				<div class="col-sm-3">
 					<input type="password" class="form-control" id="password2" name="password2">
 				</div>
 				<div class="help-block col-xs-12 col-sm-reset inline">
-					<?php echo !empty($error_password2) ? $error_password2 : ''?>
+					<?= !empty($error_password2) ? $error_password2 : ''?>
 				</div>
 			</div>
 
@@ -85,8 +83,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-info"><i class="ace-icon fa fa-check bigger-110"></i>提交</button>
-
-					<a href="<?php echo URL(CUR_ROUTE)?>" class="btn btn-default"><i class="ace-icon fa fa-times bigger-110"></i>取消</a>
+					<a href="<?= URL('system/admin/list')?>" class="btn btn-default"><i class="ace-icon fa fa-times bigger-110"></i>取消</a>
 				</div>
 			</div>
 		</form>

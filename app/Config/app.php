@@ -1,23 +1,23 @@
 <?php
 
 return [
-	// 语言包
-	'lang' => 'zh_CN',
-	// 时区
-	'timezone' => 'PRC',
-	// 加密密钥
+    // 语言包
+    'lang' => 'zh_CN',
+    // 时区
+    'timezone' => 'PRC',
+    // 加密密钥
     'secret_key' => 'app secret key',
     // 视图模版配置
     // 支持以下模版引擎：
     //  - native 使用原生PHP语法作为模版引擎
     //  - smarty 使用smarty模版引擎
-	'view' => [
-		'engine' => 'native',
-		'options' => [
-			'template_dir' => VIEW_PATH,
-			'ext' => '.php',
-		],
-	],
+    'view' => [
+        'engine' => 'native',
+        'options' => [
+            'template_dir' => VIEW_PATH,
+            'ext' => '.php',
+        ],
+    ],
 
     // 路由配置
     // 支持以下几种路由方式：
@@ -26,7 +26,9 @@ return [
     //  - rewrite URL重写方式，需要在服务器配置重写规则，然后可在路由配置文件 route.php 进行个性化配置
     'router' => [
         'type' => 'simple',
-        'default_route' => 'main/index', //默认路由
+        'options' => [
+            'default_route' => 'main/index', //默认路由
+        ],
     ],
 
     //SESSION
@@ -44,7 +46,7 @@ return [
             // 日志处理器1
             [
                 'level' => 1, //日志级别: 1-5
-                'handler' => 'FileHandler', //日志处理器
+                'handler' => \Core\Logger\Handler\FileHandler::class, //日志处理器
                 'config' => [
                     'savepath' => DATA_PATH . '/logs/', //日志保存目录
                     'filesize' => 0, //文件分割大小
@@ -55,7 +57,7 @@ return [
         'command' => [
             [
                 'level' => 1, //日志级别: 1-5
-                'handler' => 'FileHandler', //日志处理器
+                'handler' => \Core\Logger\Handler\FileHandler::class, //日志处理器
                 'config' => [
                     'savepath' => DATA_PATH . '/logs/', //日志保存目录
                     'filesize' => 0, //文件分割大小
@@ -67,7 +69,7 @@ return [
         'database' => [
             [
                 'level' => 1, //日志级别: 1-5
-                'handler' => 'FileHandler', //日志处理器
+                'handler' => \Core\Logger\Handler\FileHandler::class, //日志处理器
                 'config' => [
                     'savepath' => DATA_PATH . '/logs/', //日志保存目录
                     'filesize' => 0, //文件分割大小
@@ -95,32 +97,32 @@ return [
         ),
     ],
 
-	// 数据库配置
-	// 大型项目中通常会进行分库和读写分离，可在这里配置多个数据库节点
-	// 在代码中使用 App::getDb('default') 获取指定节点的DB实例。
-	'database' => [
-		// 默认数据库节点
-		'default' => [
-			// 是否开启慢查询日志，0为关闭
-			'slow_log' => 0,
-			// 表前缀
-			'prefix' => 't_',
-			// 字符集
-			'charset' => 'utf8',
-			// 写库
-			'write' => [
-				'dsn' => "mysql:host=localhost;port=3306;dbname=admin;charset=utf8",
-				'username' => 'root',
-				'password' => '',
-				'pconnect' => false,
-			],
-			// 读库，只允许配一个地址，如果是一主多从的话，建议使用haproxy或其他中间件做转发
-			'read' => [
-				'dsn' => "mysql:host=localhost;port=3306;dbname=admin;charset=utf8",
-				'username' => 'root',
-				'password' => '',
-				'pconnect' => false,
-			]
-		],
-	],
+    // 数据库配置
+    // 大型项目中通常会进行分库和读写分离，可在这里配置多个数据库节点
+    // 在代码中使用 App::getDb('default') 获取指定节点的DB实例。
+    'database' => [
+        // 默认数据库节点
+        'default' => [
+            // 是否开启慢查询日志，0为关闭
+            'slow_log' => 0,
+            // 表前缀
+            'prefix' => 't_',
+            // 字符集
+            'charset' => 'utf8',
+            // 写库
+            'write' => [
+                'dsn' => "mysql:host=localhost;port=3306;dbname=test;charset=utf8",
+                'username' => 'root',
+                'password' => '',
+                'pconnect' => false,
+            ],
+            // 读库，只允许配一个地址，如果是一主多从的话，建议使用haproxy或其他中间件做转发
+            'read' => [
+                'dsn' => "mysql:host=localhost;port=3306;dbname=test;charset=utf8",
+                'username' => 'root',
+                'password' => '',
+                'pconnect' => false,
+            ]
+        ],
+    ],
 ];

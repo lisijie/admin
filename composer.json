@@ -1,6 +1,6 @@
 {
     "require": {
         "php": ">=5.4.0",
-        "lisijie/framework": "2.0.x-dev"
+        "lisijie/framework": "2.1.x-dev"
     }
 }

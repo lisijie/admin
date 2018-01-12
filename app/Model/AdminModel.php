@@ -6,10 +6,7 @@ use Core\Model;
 class AdminModel extends Model
 {
 
-	protected function init()
-	{
-		$this->tableName = 'admin';
-	}
+    protected $table = 'admin';
 
 	/**
 	 * 获取管理员列表
@@ -37,7 +34,7 @@ class AdminModel extends Model
 	// 根据用户名获取
 	public function getAdminByName($userName)
 	{
-		return $this->getRow(array('user_name' => $userName));
+		return $this->getRow(array('username' => $userName));
 	}
 
 	// 更新信息
