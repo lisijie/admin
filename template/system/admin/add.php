@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="form-group <?= !empty($error_password1) ? 'has-error' : '' ?>">
-                <label for="password1" class="col-sm-2 control-label">新密码</label>
+                <label for="password1" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-3">
                     <input type="password" class="form-control" id="password1" name="password1"
                            value="<?= isset($data['password']) ? $data['password'] : '' ?>"/>
