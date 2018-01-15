@@ -7,7 +7,7 @@ define('DATA_PATH', dirname(__DIR__) . '/data/');
 // 自定义模板目录
 define('VIEW_PATH', dirname(__DIR__) . '/template/');
 
-require '/data/htdocs/php-framework/src/App.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
 App::setDebug(\Core\Environment::isProduction() == false);
 App::bootstrap();
