@@ -16,9 +16,8 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>账号</th>
-                        <th>姓名</th>
-                        <th>邮箱</th>
+                        <th>Email</th>
+                        <th>昵称</th>
                         <th>最后登录</th>
                         <th>最后登录IP</th>
                         <th>操作</th>
@@ -28,9 +27,8 @@
                     <?php foreach ($adminList as $r) : ?>
                         <tr>
                             <td class="center"><?= $r['id'] ?></td>
-                            <td><?= $r['username'] ?></td>
-                            <td><?= $r['realname'] ?></td>
                             <td><?= $r['email'] ?></td>
+                            <td><?= $r['nickname'] ?></td>
                             <td><?= $r['last_login'] ? date('Y-m-d H:i:s', $r['last_login']) : '-' ?></td>
                             <td><?= $r['last_ip'] ?></td>
                             <td><a href="<?= URL('system/admin/edit', ['id' => $r['id']]) ?>">编辑</a> | <a

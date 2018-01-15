@@ -22,7 +22,7 @@
 				<li class="light-blue">
 					<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 						<img class="nav-user-photo" src="assets/avatars/avatar<?= $loginUser['sex']?>.png" alt="Jason's Photo" />
-                        <?= $loginUser['username']?>
+                        <?= $loginUser['nickname']?>
 						<i class="ace-icon fa fa-caret-down"></i>
 					</a>
 

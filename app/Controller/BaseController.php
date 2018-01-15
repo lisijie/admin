@@ -9,7 +9,7 @@ class BaseController extends Controller
 {
     protected $pageSize = 30;
     protected $adminId = 0;
-    protected $username = '';
+    protected $nickname = '';
     protected $adminSex = 1;
     protected $powers = [];
 
@@ -21,9 +21,7 @@ class BaseController extends Controller
                 $this->gotoLoginPage();
             }
             $this->setLayout('layout/layout');
-            $this->setLayoutSection('header', 'layout/section/header');
             $this->setLayoutSection('navbar', 'layout/section/navbar');
-            $this->setLayoutSection('footer', 'layout/section/footer');
             $this->setLayoutSection('sidebar', 'layout/section/sidebar');
             $this->checkPermission();
             $this->assignGlobalVars();
@@ -51,7 +49,7 @@ class BaseController extends Controller
     {
         $this->assign('loginUser', [
             'user_id' => $this->adminId,
-            'username' => $this->username,
+            'nickname' => $this->nickname,
             'sex' => $this->adminSex,
         ]);
         $powers = $this->powers;
@@ -99,7 +97,7 @@ class BaseController extends Controller
         }
 
         $this->adminId = $admin['id'];
-        $this->username = $admin['username'];
+        $this->nickname = $admin['nickname'];
         $this->adminSex = $admin['sex'];
         $this->powers = explode(',', $admin['power']);
         return true;
@@ -124,16 +122,18 @@ class BaseController extends Controller
         $this->response->cookies()->setSecure('auth', $cookie);
     }
 
-    // 跳转到登录页
+    /**
+     * 跳转到登录页
+     */
     protected function gotoLoginPage()
     {
         header('Location: ' . URL('main/login'));
         exit;
     }
 
-    protected function getPowerList($chkpower = '')
+    protected function getPowerList($chkPowers = '')
     {
-        $chkpower = empty($chkpower) ? [] : explode(',', $chkpower);
+        $chkPowers = empty($chkPowers) ? [] : explode(',', $chkPowers);
         $menuList = \App::config()->get('menu');
         $powerList = [];
         foreach ($menuList as $row) {
@@ -143,7 +143,7 @@ class BaseController extends Controller
                 $group['list'][] = [
                     'name' => $r['name'],
                     'route' => $r['route'],
-                    'checked' => in_array($r['route'], $chkpower),
+                    'checked' => in_array($r['route'], $chkPowers),
                 ];
             }
             $powerList[] = $group;

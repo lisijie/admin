@@ -10,17 +10,17 @@
 
         <form class="form-horizontal" method="post" action="<?php echo URL('system/profile/save') ?>">
             <div class="form-group">
-                <label class="col-sm-2 control-label">用户名</label>
+                <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
-                    <label class="control-label"><?php echo $profile['username'] ?></label>
+                    <label class="control-label"><?php echo $profile['email'] ?></label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="realname" class="col-sm-2 control-label">真实姓名</label>
+                <label for="realname" class="col-sm-2 control-label">昵称</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="realname" name="realname"
-                           value="<?php echo $profile['realname'] ?>">
+                    <input type="text" class="form-control" id="nickname" name="nickname"
+                           value="<?php echo $profile['nickname'] ?>">
                 </div>
             </div>
 
@@ -44,13 +44,6 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="email" name="email"
-                           value="<?= $profile['email'] ?>">
-                </div>
-            </div>
             <div class="form-group <?= !empty($errorPassword1) ? 'has-error' : '' ?>">
                 <label for="password1" class="col-sm-2 control-label">新密码</label>
                 <div class="col-sm-3">

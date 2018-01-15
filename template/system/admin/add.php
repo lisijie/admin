@@ -2,21 +2,24 @@
     <div class="col-xs-12">
 
         <form class="form-horizontal" method="post" action="<?= URL('system/admin/add') ?>">
-            <div class="form-group <?= !empty($error_username) ? 'has-error' : '' ?>">
-                <label for="username" class="col-sm-2 control-label">用户名</label>
+            <div class="form-group <?= !empty($error_email) ? 'has-error' : '' ?>">
+                <label for="username" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="username" name="username"
-                           value="<?= isset($data['username']) ? $data['username'] : '' ?>">
+                    <input type="text" class="form-control" id="email" name="email"
+                           value="<?= isset($data['email']) ? $data['email'] : '' ?>">
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    <?= !empty($error_username) ? $error_username : '' ?>
+                    <?= !empty($error_email) ? $error_email : '' ?>
                 </div>
             </div>
             <div class="form-group">
-                <label for="realname" class="col-sm-2 control-label">真实姓名</label>
+                <label for="nickname" class="col-sm-2 control-label">昵称</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="realname" name="realname"
-                           value="<?= isset($data['realname']) ? $data['realname'] : '' ?>">
+                    <input type="text" class="form-control" id="nickname" name="nickname"
+                           value="<?= isset($data['nickname']) ? $data['nickname'] : '' ?>">
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    不填表示使用Email前缀
                 </div>
             </div>
             <div class="form-group">
@@ -36,13 +39,6 @@
                             女
                         </label>
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-3">
-                    <input type="text" class="form-control" id="email" name="email"
-                           value="<?= isset($data['email']) ? $data['email'] : '' ?>">
                 </div>
             </div>
             <div class="form-group <?= !empty($error_password1) ? 'has-error' : '' ?>">

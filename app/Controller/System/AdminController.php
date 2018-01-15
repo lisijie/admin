@@ -5,6 +5,7 @@ use App\Controller\BaseController;
 use App\Model\AdminModel;
 use App\Util\Pager;
 use Core\Lib\Strings;
+use Core\Lib\Validate;
 
 /**
  * 后台账号管理
@@ -49,9 +50,8 @@ class AdminController extends BaseController
             $power = (array)$this->getPost('power', []);
             $salt = Strings::random(10);
             $data = [
-                'username' => trim($this->getPost('username', '')),
-                'realname' => trim($this->getPost('realname', '')),
                 'email' => trim($this->getPost('email', '')),
+                'nickname' => trim($this->getPost('nickname', '')),
                 'password' => $password1,
                 'salt' => $salt,
                 'power' => implode(',', $power),
@@ -59,12 +59,19 @@ class AdminController extends BaseController
             ];
             $session->setFlash('data', $data);
 
-            if (empty($data['username'])) {
-                $session->setFlash('error_username', '请输入用户名');
+            if (empty($data['email'])) {
+                $session->setFlash('error_email', '请输入Email');
                 return $this->goBack();
             }
-            if ($adminModel->getAdminByName($data['username'])) {
-                $session->setFlash('error_username', '该用户名已存在');
+            if (empty($data['nickname'])) {
+                $data['nickname'] = explode('@', $data['email'])[0];
+            }
+            if (!Validate::email($data['email'])) {
+                $session->setFlash('error_email', 'Email地址无效');
+                return $this->goBack();
+            }
+            if ($adminModel->getRow(['email' => $data['email']], ['id'])) {
+                $session->setFlash('error_email', '该Email已存在');
                 return $this->goBack();
             }
             if (empty($password1)) {
@@ -94,7 +101,8 @@ class AdminController extends BaseController
         $this->assign([
             'powerList' => $this->getPowerList($data['power']),
             'data' => $data,
-            'error_username' => $session->getFlash('error_username'),
+            'error_email' => $session->getFlash('error_email'),
+            'error_nickname' => $session->getFlash('error_nickname'),
             'error_password1' => $session->getFlash('error_password1'),
             'error_password2' => $session->getFlash('error_password2'),
         ]);
@@ -117,12 +125,13 @@ class AdminController extends BaseController
             $password2 = trim($this->getPost('password2'));
             $power = (array)$this->getPost('power', []);
             $data = [
-                'realname' => trim($this->getPost('realname', '')),
-                'email' => trim($this->getPost('email', '')),
+                'nickname' => trim($this->getPost('nickname', '')),
                 'power' => implode(',', $power),
                 'sex' => intval($this->getPost('sex', 1)),
             ];
-
+            if (empty($data['nickname'])) {
+                unset($data['nickname']);
+            }
             if (!empty($password1)) {
                 if (strlen($password1) < 6) {
                     $session->setFlash('error_password1', '密码长度必须大于6位');
@@ -149,6 +158,7 @@ class AdminController extends BaseController
             'adminInfo' => $adminInfo,
             'powerList' => $this->getPowerList($adminInfo['power']),
             'password1' => $session->getFlash('password1'),
+            'error_nickname' => $session->getFlash('error_nickname'),
             'error_password1' => $session->getFlash('error_password1'),
             'error_password2' => $session->getFlash('error_password2'),
         ]);

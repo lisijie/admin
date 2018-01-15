@@ -4,16 +4,19 @@
 		<form class="form-horizontal" method="post" action="<?= URL(CUR_ROUTE, ['do'=>'editadmin'])?>">
 			<input type="hidden" name="id" value="<?= $adminInfo['id']?>" />
 			<div class="form-group">
-				<label class="col-sm-2 control-label">用户名</label>
+				<label class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
-					<label class="control-label"><?= $adminInfo['username']?></label>
+					<label class="control-label"><?= $adminInfo['email']?></label>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="realname" class="col-sm-2 control-label">真实姓名</label>
+            <div class="form-group <?= !empty($error_nickname) ? 'has-error' : '' ?>"">
+				<label for="nickname" class="col-sm-2 control-label">昵称</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" id="realname" name="realname" value="<?= $adminInfo['realname']?>">
+					<input type="text" class="form-control" id="nickname" name="nickname" value="<?= $adminInfo['nickname']?>">
 				</div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    <?= !empty($error_nickname) ? $error_nickname : '' ?>
+                </div>
 			</div>
 			<div class="form-group">
 				<label for="sex" class="col-sm-2 control-label">性别</label>
@@ -30,12 +33,6 @@
 							女
 						</label>
 					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="email" class="col-sm-2 control-label">Email</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="email" name="email" value="<?= $adminInfo['email']?>">
 				</div>
 			</div>
 			<div class="form-group <?= !empty($error_password1) ? 'has-error' : ''?>">
